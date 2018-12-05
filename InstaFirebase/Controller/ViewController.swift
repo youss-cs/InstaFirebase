@@ -14,6 +14,7 @@ class ViewController: UIViewController {
     let photoButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "plus_photo").withRenderingMode(.alwaysOriginal), for: .normal)
+        button.addTarget(self, action: #selector(handlePhoto), for: .touchUpInside)
         return button
     }()
     
@@ -99,15 +100,39 @@ class ViewController: UIViewController {
         guard let username = usernameField.text, username.count > 0 else { return }
         guard let password = passwordField.text, password.count > 0 else { return }
         
-        AuthService.instance.registerUserWith(email: email, password: password, username: username) { (error) in
+        AuthService.instance.registerUserWith(email: email, password: password, username: username, image: photoButton.imageView?.image) { (error) in
             if let error = error {
                 print(error.localizedDescription)
                 return
             }
             
-            print("user successfully registred.")
+            print("user saved successfully.")
         }
     }
+    
+    @objc func handlePhoto() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        
+        present(imagePicker, animated: true, completion: nil)
+    }
+}
 
+extension ViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
+            photoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        } else if let originalImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage {
+            photoButton.setImage(originalImage.withRenderingMode(.alwaysOriginal), for: .normal)
+        }
+        
+        photoButton.layer.cornerRadius = photoButton.frame.width / 2
+        photoButton.layer.borderColor = UIColor.black.cgColor
+        photoButton.layer.borderWidth = 3
+        photoButton.clipsToBounds = true
+        
+        dismiss(animated: true, completion: nil)
+    }
 }
 

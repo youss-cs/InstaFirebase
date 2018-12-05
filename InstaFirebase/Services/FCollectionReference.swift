@@ -12,8 +12,6 @@ import FirebaseStorage
 
 enum FCollectionReference: String {
     case Users
-    case Channels
-    case Messages
 }
 
 

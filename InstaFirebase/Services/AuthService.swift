@@ -22,7 +22,7 @@ class AuthService {
     func currentUser() -> User? {
         if Auth.auth().currentUser != nil {
             if let dictionary = UserDefaults.standard.object(forKey: kCURRENTUSER) as? [String : Any] {
-                //return User(dictionary: dictionary)
+                return User(dictionary: dictionary)
             }
         }
         return nil
@@ -38,28 +38,46 @@ class AuthService {
                 return
             } else {
                 //get user from firebase and save locally
-                //self.fetchCurrentUserFromFirestore(objectId: firUser!.user.uid) {
+                self.fetchCurrentUserFromFirestore(objectId: firUser!.user.uid) {
                     completion(error)
-                //}
+                }
             }
         })
     }
     
     //MARK: Register functions
     
-    func registerUserWith(email: String, password: String, username: String, completion: @escaping (_ error: Error?) -> Void ) {
+    func registerUserWith(email: String, password: String, username: String, image: UIImage?, completion: @escaping (_ error: Error?) -> Void ) {
         
-        Auth.auth().createUser(withEmail: email, password: password, completion: { (firuser, error) in
+        Auth.auth().createUser(withEmail: email, password: password, completion: { (result, error) in
             if error != nil {
                 completion(error)
                 return
             }
             
-            /*let user = User(objectId: firuser!.user.uid, createdAt: Date(), updatedAt: Date(), email: firuser!.user.email!, username: username)
+            guard let fuser = result?.user else {
+                completion(error)
+                return
+            }
             
-            self.saveUserLocally(user: user)
-            self.saveUserToFirestore(user: user)*/
-            completion(error)
+            var dict: [String : Any] = [kID : fuser.uid, kEMAIL : fuser.email!, kUSERNAME : username]
+            
+            guard let image = image else {
+                self.saveUser(dictionary: dict)
+                completion(nil)
+                return
+            }
+            
+            StorageService.instance.uploadImage(image: image, completion: { (url) in
+                guard let imageURL = url?.absoluteString else {
+                    completion(nil)
+                    return
+                }
+                
+                dict[kPROFILE] = imageURL
+                self.saveUser(dictionary: dict)
+                completion(nil)
+            })
         })
     }
     
@@ -91,8 +109,8 @@ class AuthService {
     
     //MARK: Save user funcs
     
-    /*func saveUserToFirestore(user: User) {
-        reference(.Users).document(user.objectId).setData(user.dictionary) { (error) in
+    func saveUserToFirestore(user: User) {
+        reference(.Users).document(user.id).setData(user.dictionary) { (error) in
             print("error is \(String(describing: error?.localizedDescription))")
         }
     }
@@ -100,6 +118,12 @@ class AuthService {
     func saveUserLocally(user: User) {
         UserDefaults.standard.set(user.dictionary, forKey: kCURRENTUSER)
         UserDefaults.standard.synchronize()
+    }
+    
+    func saveUser(dictionary:[String : Any]) {
+        let user = User(dictionary: dictionary)
+        self.saveUserToFirestore(user: user)
+        self.saveUserLocally(user: user)
     }
     
     //MARK: Fetch User funcs
@@ -115,5 +139,5 @@ class AuthService {
                 completion()
             }
         }
-    }*/
+    }
 }
