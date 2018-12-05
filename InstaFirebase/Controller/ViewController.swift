@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class ViewController: UIViewController {
     
@@ -22,6 +23,7 @@ class ViewController: UIViewController {
         tf.font = UIFont.boldSystemFont(ofSize: 14)
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
@@ -31,6 +33,7 @@ class ViewController: UIViewController {
         tf.font = UIFont.boldSystemFont(ofSize: 14)
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
@@ -41,6 +44,7 @@ class ViewController: UIViewController {
         tf.font = UIFont.boldSystemFont(ofSize: 14)
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
+        tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
     
@@ -51,6 +55,8 @@ class ViewController: UIViewController {
         button.backgroundColor = UIColor.rgb(149, 204, 244)
         button.setTitleColor(.white, for: .normal)
         button.layer.cornerRadius = 5
+        button.isEnabled = false
+        button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         return button
     }()
 
@@ -80,6 +86,27 @@ class ViewController: UIViewController {
         
         view.addSubview(inputStack)
         inputStack.anchor(top: photoButton.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, right: view.safeAreaLayoutGuide.trailingAnchor, paddingTop: 40, paddingLeft: 20, paddingBottom: 0, paddingRight: -20, width: 0, height: 200)
+    }
+    
+    @objc func handleTextInputChange() {
+        let isValidForm = emailField.text?.count ?? 0 > 0 && usernameField.text?.count ?? 0 > 0 && passwordField.text?.count ?? 0 > 0
+        signupButton.isEnabled = isValidForm
+        signupButton.backgroundColor = isValidForm ? UIColor.rgb(17, 154, 237) : UIColor.rgb(149, 204, 244)
+    }
+    
+    @objc func handleSignup() {
+        guard let email = emailField.text?.lowercased(), email.count > 0 else { return }
+        guard let username = usernameField.text, username.count > 0 else { return }
+        guard let password = passwordField.text, password.count > 0 else { return }
+        
+        AuthService.instance.registerUserWith(email: email, password: password, username: username) { (error) in
+            if let error = error {
+                print(error.localizedDescription)
+                return
+            }
+            
+            print("user successfully registred.")
+        }
     }
 
 }
