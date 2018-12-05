@@ -12,6 +12,8 @@
 		A134C3E621B7F9D50068A077 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A134C3E421B7F9D50068A077 /* Main.storyboard */; };
 		A134C3E821B7F9D50068A077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A134C3E721B7F9D50068A077 /* Assets.xcassets */; };
 		A134C3EB21B7F9D50068A077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A134C3E921B7F9D50068A077 /* LaunchScreen.storyboard */; };
+		A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3F721B7FA5A0068A077 /* UIColorExt.swift */; };
+		A134C3FA21B7FA6B0068A077 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3F921B7FA6B0068A077 /* UIViewExt.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +24,8 @@
 		A134C3E721B7F9D50068A077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A134C3EA21B7F9D50068A077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A134C3EC21B7F9D50068A077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A134C3F721B7FA5A0068A077 /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
+		A134C3F921B7FA6B0068A077 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,14 +58,56 @@
 		A134C3DF21B7F9D50068A077 /* InstaFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				A134C3F621B7FA400068A077 /* Services */,
+				A134C3F521B7FA2F0068A077 /* Utils */,
+				A134C3F421B7FA290068A077 /* Controller */,
+				A134C3F321B7FA240068A077 /* View */,
+				A134C3F221B7FA160068A077 /* Model */,
 				A134C3E021B7F9D50068A077 /* AppDelegate.swift */,
-				A134C3E221B7F9D50068A077 /* ViewController.swift */,
 				A134C3E421B7F9D50068A077 /* Main.storyboard */,
 				A134C3E721B7F9D50068A077 /* Assets.xcassets */,
 				A134C3E921B7F9D50068A077 /* LaunchScreen.storyboard */,
 				A134C3EC21B7F9D50068A077 /* Info.plist */,
 			);
 			path = InstaFirebase;
+			sourceTree = "<group>";
+		};
+		A134C3F221B7FA160068A077 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		A134C3F321B7FA240068A077 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		A134C3F421B7FA290068A077 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				A134C3E221B7F9D50068A077 /* ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		A134C3F521B7FA2F0068A077 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				A134C3F721B7FA5A0068A077 /* UIColorExt.swift */,
+				A134C3F921B7FA6B0068A077 /* UIViewExt.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		A134C3F621B7FA400068A077 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Services;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -135,7 +181,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A134C3FA21B7FA6B0068A077 /* UIViewExt.swift in Sources */,
 				A134C3E321B7F9D50068A077 /* ViewController.swift in Sources */,
+				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
