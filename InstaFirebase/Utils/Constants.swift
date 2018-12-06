@@ -10,9 +10,14 @@ import Foundation
 
 let userDefaults = UserDefaults.standard
 
+//View constatns
+public let kHEADERID = "headerId"
+
 //User
 public let kID = "Id"
 public let kEMAIL = "email"
 public let kUSERNAME = "username"
 public let kPROFILE = "avatar"
 public let kCURRENTUSER = "currentUser"
+
+

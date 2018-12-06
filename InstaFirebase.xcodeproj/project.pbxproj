@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A105709721B99B9F00C75AE7 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A105709621B99B9F00C75AE7 /* UserProfileHeader.swift */; };
 		A12B52BE21B9413400564F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52BD21B9413400564F6A /* MainTabBarController.swift */; };
 		A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52BF21B941FB00564F6A /* UserProfileController.swift */; };
 		A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3E021B7F9D50068A077 /* AppDelegate.swift */; };
@@ -29,6 +30,7 @@
 		0E93E8DF5BF96D11850A1446 /* Pods-InstaFirebase.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFirebase.release.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFirebase/Pods-InstaFirebase.release.xcconfig"; sourceTree = "<group>"; };
 		69C8FACF18043B975907D0E3 /* Pods-InstaFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFirebase/Pods-InstaFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		79BCD2611720B94EFBAD6DD2 /* Pods_InstaFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A105709621B99B9F00C75AE7 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
 		A12B52BD21B9413400564F6A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A12B52BF21B941FB00564F6A /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		A134C3DD21B7F9D50068A077 /* InstaFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,6 +126,7 @@
 		A134C3F321B7FA240068A077 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				A105709621B99B9F00C75AE7 /* UserProfileHeader.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -294,6 +297,7 @@
 				A134C3FA21B7FA6B0068A077 /* UIViewExt.swift in Sources */,
 				A134C3E321B7F9D50068A077 /* ViewController.swift in Sources */,
 				A12B52BE21B9413400564F6A /* MainTabBarController.swift in Sources */,
+				A105709721B99B9F00C75AE7 /* UserProfileHeader.swift in Sources */,
 				A1F8A88021B81A0300219249 /* AuthService.swift in Sources */,
 				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */,
