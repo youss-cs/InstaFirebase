@@ -38,7 +38,7 @@ class AuthService {
                 return
             } else {
                 //get user from firebase and save locally
-                self.fetchCurrentUserFromFirestore(objectId: firUser!.user.uid) {
+                self.fetchCurrentUserFromFirestore(userId: firUser!.user.uid) {
                     completion(error)
                 }
             }
@@ -84,7 +84,6 @@ class AuthService {
     //MARK: LogOut func
     
      func logOutCurrentUser(completion: @escaping (_ success: Bool) -> Void) {
-        
         userDefaults.removeObject(forKey: kCURRENTUSER)
         userDefaults.synchronize()
         
@@ -100,7 +99,6 @@ class AuthService {
     //MARK: Delete user
     
     func deleteUser(completion: @escaping (_ error: Error?) -> Void) {
-        
         let user = Auth.auth().currentUser
         user?.delete(completion: { (error) in
             completion(error)
@@ -128,8 +126,8 @@ class AuthService {
     
     //MARK: Fetch User funcs
     
-    func fetchCurrentUserFromFirestore(objectId: String, completion: @escaping () -> Void) {
-        reference(.Users).document(objectId).getDocument { (snapshot, error) in
+    func fetchCurrentUserFromFirestore(userId: String, completion: @escaping () -> Void) {
+        reference(.Users).document(userId).getDocument { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             
             if snapshot.exists {
