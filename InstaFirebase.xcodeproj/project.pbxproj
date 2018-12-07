@@ -11,12 +11,14 @@
 		A12B52BE21B9413400564F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52BD21B9413400564F6A /* MainTabBarController.swift */; };
 		A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52BF21B941FB00564F6A /* UserProfileController.swift */; };
 		A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3E021B7F9D50068A077 /* AppDelegate.swift */; };
-		A134C3E321B7F9D50068A077 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3E221B7F9D50068A077 /* ViewController.swift */; };
+		A134C3E321B7F9D50068A077 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3E221B7F9D50068A077 /* SignUpController.swift */; };
 		A134C3E621B7F9D50068A077 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A134C3E421B7F9D50068A077 /* Main.storyboard */; };
 		A134C3E821B7F9D50068A077 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A134C3E721B7F9D50068A077 /* Assets.xcassets */; };
 		A134C3EB21B7F9D50068A077 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A134C3E921B7F9D50068A077 /* LaunchScreen.storyboard */; };
 		A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3F721B7FA5A0068A077 /* UIColorExt.swift */; };
 		A134C3FA21B7FA6B0068A077 /* UIViewExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3F921B7FA6B0068A077 /* UIViewExt.swift */; };
+		A1463E1E21BAB0B40090543B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1D21BAB0B40090543B /* LoginController.swift */; };
+		A1463E2021BAB4C60090543B /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */; };
 		A1F8A87C21B8172B00219249 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F8A87B21B8172B00219249 /* GoogleService-Info.plist */; };
 		A1F8A88021B81A0300219249 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8A87F21B81A0300219249 /* AuthService.swift */; };
 		A1F8A88221B81A9A00219249 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8A88121B81A9A00219249 /* Constants.swift */; };
@@ -35,13 +37,15 @@
 		A12B52BF21B941FB00564F6A /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		A134C3DD21B7F9D50068A077 /* InstaFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A134C3E021B7F9D50068A077 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		A134C3E221B7F9D50068A077 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		A134C3E221B7F9D50068A077 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		A134C3E521B7F9D50068A077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A134C3E721B7F9D50068A077 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A134C3EA21B7F9D50068A077 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A134C3EC21B7F9D50068A077 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A134C3F721B7FA5A0068A077 /* UIColorExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExt.swift; sourceTree = "<group>"; };
 		A134C3F921B7FA6B0068A077 /* UIViewExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewExt.swift; sourceTree = "<group>"; };
+		A1463E1D21BAB0B40090543B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		A1F8A87B21B8172B00219249 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1F8A87F21B81A0300219249 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A1F8A88121B81A9A00219249 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
@@ -134,7 +138,8 @@
 		A134C3F421B7FA290068A077 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A134C3E221B7F9D50068A077 /* ViewController.swift */,
+				A1463E1D21BAB0B40090543B /* LoginController.swift */,
+				A134C3E221B7F9D50068A077 /* SignUpController.swift */,
 				A12B52BD21B9413400564F6A /* MainTabBarController.swift */,
 				A12B52BF21B941FB00564F6A /* UserProfileController.swift */,
 			);
@@ -146,6 +151,7 @@
 			children = (
 				A134C3F721B7FA5A0068A077 /* UIColorExt.swift */,
 				A134C3F921B7FA6B0068A077 /* UIViewExt.swift */,
+				A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */,
 				A1F8A88121B81A9A00219249 /* Constants.swift */,
 			);
 			path = Utils;
@@ -295,16 +301,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				A134C3FA21B7FA6B0068A077 /* UIViewExt.swift in Sources */,
-				A134C3E321B7F9D50068A077 /* ViewController.swift in Sources */,
+				A134C3E321B7F9D50068A077 /* SignUpController.swift in Sources */,
 				A12B52BE21B9413400564F6A /* MainTabBarController.swift in Sources */,
 				A105709721B99B9F00C75AE7 /* UserProfileHeader.swift in Sources */,
 				A1F8A88021B81A0300219249 /* AuthService.swift in Sources */,
 				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */,
 				A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */,
+				A1463E2021BAB4C60090543B /* UIApplicationExt.swift in Sources */,
 				A1F8A88821B8540400219249 /* User.swift in Sources */,
 				A1F8A88621B8522E00219249 /* StorageService.swift in Sources */,
 				A1F8A88421B81B2A00219249 /* FCollectionReference.swift in Sources */,
+				A1463E1E21BAB0B40090543B /* LoginController.swift in Sources */,
 				A1F8A88221B81A9A00219249 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

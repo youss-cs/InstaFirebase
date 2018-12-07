@@ -20,7 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         
         window = UIWindow()
-        window?.rootViewController = MainTabBarController()
+        
+        if Auth.auth().currentUser == nil {
+            let logInController = LoginController()
+            let navController = UINavigationController(rootViewController: logInController)
+            window?.rootViewController = navController
+        } else {
+            window?.rootViewController = MainTabBarController()
+        }
         
         return true
     }
