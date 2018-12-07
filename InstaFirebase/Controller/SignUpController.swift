@@ -24,6 +24,8 @@ class SignUpController: UIViewController {
         tf.font = UIFont.boldSystemFont(ofSize: 14)
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
+        tf.keyboardType = .emailAddress
+        tf.autocapitalizationType = .none
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -34,6 +36,7 @@ class SignUpController: UIViewController {
         tf.font = UIFont.boldSystemFont(ofSize: 14)
         tf.backgroundColor = UIColor(white: 0, alpha: 0.03)
         tf.borderStyle = .roundedRect
+        tf.autocapitalizationType = .none
         tf.addTarget(self, action: #selector(handleTextInputChange), for: .editingChanged)
         return tf
     }()
@@ -60,6 +63,16 @@ class SignUpController: UIViewController {
         button.addTarget(self, action: #selector(handleSignup), for: .touchUpInside)
         return button
     }()
+    
+    let alreadyHaveAccountButton: UIButton = {
+        let button = UIButton(type: .system)
+        let attributedString = NSMutableAttributedString(string: "Already have an account?  " , attributes: [.font : UIFont.systemFont(ofSize: 14), .foregroundColor : UIColor.lightGray])
+        attributedString.append(NSAttributedString(string: "Sign In", attributes: [.font : UIFont.boldSystemFont(ofSize: 14), .foregroundColor : UIColor.rgb(17, 154, 237)]))
+        
+        button.setAttributedTitle(attributedString, for: .normal)
+        button.addTarget(self, action: #selector(handleShowLogin), for: .touchUpInside)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,7 +83,9 @@ class SignUpController: UIViewController {
     func setupView() {
         view.backgroundColor = .white
         view.addSubview(photoButton)
+        view.addSubview(alreadyHaveAccountButton)
         
+        alreadyHaveAccountButton.anchor(left: view.leadingAnchor, bottom: view.safeAreaLayoutGuide.bottomAnchor, right: view.trailingAnchor, height: 50)
         photoButton.anchor(top: view.safeAreaLayoutGuide.topAnchor, paddingTop: 40, width: 140, height: 140)
         photoButton.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         
@@ -87,7 +102,7 @@ class SignUpController: UIViewController {
         }()
         
         view.addSubview(inputStack)
-        inputStack.anchor(top: photoButton.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, right: view.safeAreaLayoutGuide.trailingAnchor, paddingTop: 40, paddingLeft: 20, paddingRight: 20, height: 200)
+        inputStack.anchor(top: photoButton.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, right: view.safeAreaLayoutGuide.trailingAnchor, paddingTop: 40, paddingLeft: 30, paddingRight: 30, height: 200)
     }
     
     @objc func handleTextInputChange() {
@@ -107,7 +122,7 @@ class SignUpController: UIViewController {
                 return
             }
             
-            print("user saved successfully.")
+            UIApplication.setRootView(MainTabBarController())
         }
     }
     
@@ -118,9 +133,14 @@ class SignUpController: UIViewController {
         
         present(imagePicker, animated: true, completion: nil)
     }
+    
+    @objc func handleShowLogin() {
+        _ = navigationController?.popViewController(animated: true)
+    }
 }
 
 extension SignUpController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         if let editedImage = info[UIImagePickerController.InfoKey.editedImage] as? UIImage {
             photoButton.setImage(editedImage.withRenderingMode(.alwaysOriginal), for: .normal)
