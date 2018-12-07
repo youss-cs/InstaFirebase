@@ -86,7 +86,7 @@ class ViewController: UIViewController {
         }()
         
         view.addSubview(inputStack)
-        inputStack.anchor(top: photoButton.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, right: view.safeAreaLayoutGuide.trailingAnchor, paddingTop: 40, paddingLeft: 20, paddingBottom: 0, paddingRight: -20, width: 0, height: 200)
+        inputStack.anchor(top: photoButton.bottomAnchor, left: view.safeAreaLayoutGuide.leadingAnchor, bottom: nil, right: view.safeAreaLayoutGuide.trailingAnchor, paddingTop: 40, paddingLeft: 20, paddingBottom: 0, paddingRight: 20, width: 0, height: 200)
     }
     
     @objc func handleTextInputChange() {

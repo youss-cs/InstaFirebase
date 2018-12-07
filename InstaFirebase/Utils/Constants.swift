@@ -12,6 +12,7 @@ let userDefaults = UserDefaults.standard
 
 //View constatns
 public let kHEADERID = "headerId"
+public let kCELLID = "cellId"
 
 //User
 public let kID = "Id"
