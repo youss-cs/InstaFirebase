@@ -19,14 +19,14 @@ class MainTabBarController: UITabBarController, UITabBarControllerDelegate {
     }
     
     func tabBarController(_ tabBarController: UITabBarController, shouldSelect viewController: UIViewController) -> Bool {
-        guard viewControllers?.index(of: viewController) == 2 else { return false }
+        guard viewControllers?.index(of: viewController) == 2 else { return true }
         
         let layout = UICollectionViewFlowLayout()
         let photoSelector = PhotoSelectorController(collectionViewLayout: layout)
         let nav = UINavigationController(rootViewController: photoSelector)
         present(nav, animated: true, completion: nil)
         
-        return true
+        return false
     }
     
     func setupView() {
