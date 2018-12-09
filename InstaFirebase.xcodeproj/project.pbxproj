@@ -11,6 +11,7 @@
 		A114202121BD564700382DA3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202021BD564700382DA3 /* Post.swift */; };
 		A114202321BD569300382DA3 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202221BD569300382DA3 /* PostService.swift */; };
 		A114202521BD669C00382DA3 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202421BD669C00382DA3 /* UserProfilePhotoCell.swift */; };
+		A114202721BD7F3500382DA3 /* CustomImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202621BD7F3500382DA3 /* CustomImageView.swift */; };
 		A12B52BE21B9413400564F6A /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52BD21B9413400564F6A /* MainTabBarController.swift */; };
 		A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A12B52BF21B941FB00564F6A /* UserProfileController.swift */; };
 		A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A134C3E021B7F9D50068A077 /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 		A114202021BD564700382DA3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A114202221BD569300382DA3 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		A114202421BD669C00382DA3 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
+		A114202621BD7F3500382DA3 /* CustomImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomImageView.swift; sourceTree = "<group>"; };
 		A12B52BD21B9413400564F6A /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		A12B52BF21B941FB00564F6A /* UserProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileController.swift; sourceTree = "<group>"; };
 		A134C3DD21B7F9D50068A077 /* InstaFirebase.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = InstaFirebase.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -173,6 +175,7 @@
 				A134C3F921B7FA6B0068A077 /* UIViewExt.swift */,
 				A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */,
 				A1F8A88121B81A9A00219249 /* Constants.swift */,
+				A114202621BD7F3500382DA3 /* CustomImageView.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -328,6 +331,7 @@
 				A1F8A88021B81A0300219249 /* AuthService.swift in Sources */,
 				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A1B91C3421BC3F4100ACFAF7 /* SharePhotoController.swift in Sources */,
+				A114202721BD7F3500382DA3 /* CustomImageView.swift in Sources */,
 				A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */,
 				A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */,
 				A1463E2021BAB4C60090543B /* UIApplicationExt.swift in Sources */,

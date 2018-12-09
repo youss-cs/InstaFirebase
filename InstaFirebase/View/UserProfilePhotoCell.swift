@@ -13,15 +13,12 @@ class UserProfilePhotoCell: UICollectionViewCell {
     var post: Post? {
         didSet {
             guard let imageUrl = post?.imageUrl else { return }
-            guard let url = URL(string: imageUrl) else { return }
-            StorageService.instance.downloadImage(at: url) { (image) in
-                self.photoImageView.image = image
-            }
+            photoImageView.loadImage(imageUrl: imageUrl)
         }
     }
     
-    let photoImageView: UIImageView = {
-        let image = UIImageView()
+    let photoImageView: CustomImageView = {
+        let image = CustomImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         return image

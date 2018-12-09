@@ -13,7 +13,7 @@ class UserProfileHeader: UICollectionViewCell {
     var user: User? {
         didSet {
             guard let imageUrl = user?.profileImage else { return }
-            setupProfileImage(imageUrl: imageUrl)
+            profileImage.loadImage(imageUrl: imageUrl)
         }
     }
     
@@ -84,8 +84,8 @@ class UserProfileHeader: UICollectionViewCell {
         return button
     }()
     
-    let profileImage: UIImageView = {
-        let image = UIImageView()
+    let profileImage: CustomImageView = {
+        let image = CustomImageView()
         return image
     }()
     
@@ -115,14 +115,6 @@ class UserProfileHeader: UICollectionViewCell {
         usernameLabel.anchor(top: profileImage.bottomAnchor, left: leadingAnchor, right: trailingAnchor, paddingTop: 20, paddingLeft: 20, paddingRight: 20)
         
         setupBottomTabBar()
-    }
-    
-    fileprivate func setupProfileImage(imageUrl: String) {
-        guard let url = URL(string: imageUrl) else { return }
-        
-        StorageService.instance.downloadImage(at: url) { (image) in
-            self.profileImage.image = image
-        }
     }
     
     fileprivate func setupUserStatsView() {

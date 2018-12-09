@@ -57,15 +57,4 @@ class StorageService {
             completion(UIImage(data: imageData))
         }
     }*/
-    
-    func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error { print("Failed to retrieve image", error) }
-            guard let data = data else { return }
-            
-            DispatchQueue.main.async {
-                completion(UIImage(data: data))
-            }
-        }.resume()
-    }
 }

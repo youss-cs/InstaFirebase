@@ -7,11 +7,13 @@
 //
 
 import UIKit
+import Firebase
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var user = AuthService.instance.currentUser()
     var posts = [Post]()
+    var postListener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +25,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         navigationItem.title =  user?.username
         
         setupLogOutButton()
-        fetchPosts()
+        fetchProfilePosts()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -80,10 +82,41 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         present(alert, animated: true, completion: nil)
     }
     
-    func fetchPosts() {
+    /*func fetchPosts() {
         PostService.instance.fetchProfilePostsFromFirestore { (posts) in
             self.posts = posts
             self.collectionView.reloadData()
+        }
+    }*/
+    
+    fileprivate func fetchProfilePosts() {
+        guard let userId = AuthService.init().currentUser()?.id else { return }
+        
+        postListener = reference(.Posts).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
+            guard let snapshot = querySnapshot else {
+                print("Error: \(error?.localizedDescription ?? "No error")")
+                return
+            }
+            
+            snapshot.documentChanges.forEach { change in
+                self.handleDocumentChange(change)
+            }
+        }
+    }
+    
+    fileprivate func handleDocumentChange(_ change: DocumentChange) {
+        let document = change.document
+        var data = document.data()
+        data[kID] = document.documentID
+        guard let post = Post(dictionary: document.data()) else { return }
+        
+        switch change.type {
+        case .added:
+            posts.insert(post, at: 0)
+            let indexPath = IndexPath(item: 0, section: 0)
+            collectionView.insertItems(at: [indexPath])
+        default:
+            break
         }
     }
     
