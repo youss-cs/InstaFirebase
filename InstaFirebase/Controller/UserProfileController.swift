@@ -11,17 +11,19 @@ import UIKit
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var user = AuthService.instance.currentUser()
+    var posts = [Post]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         collectionView.backgroundColor = .white
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: kHEADERID)
-        collectionView.register(UICollectionViewCell.self, forCellWithReuseIdentifier: kCELLID)
+        collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: kCELLID)
         
         navigationItem.title =  user?.username
         
         setupLogOutButton()
+        fetchPosts()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -31,12 +33,12 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 7
+        return posts.count
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCELLID, for: indexPath)
-        cell.backgroundColor = .red
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCELLID, for: indexPath) as! UserProfilePhotoCell
+        cell.post = posts[indexPath.item]
         return cell
     }
     
@@ -57,8 +59,6 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         return CGSize(width: width, height: width)
     }
     
-    
-    
     fileprivate func setupLogOutButton() {
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: #imageLiteral(resourceName: "gear").withRenderingMode(.alwaysOriginal), style: .plain, target: self, action: #selector(handleLogOut))
     }
@@ -78,6 +78,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         
         alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
+    }
+    
+    func fetchPosts() {
+        PostService.instance.fetchProfilePostsFromFirestore { (posts) in
+            self.posts = posts
+            self.collectionView.reloadData()
+        }
     }
     
 }

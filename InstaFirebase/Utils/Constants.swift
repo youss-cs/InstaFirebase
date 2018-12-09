@@ -10,6 +10,8 @@ import Foundation
 
 let userDefaults = UserDefaults.standard
 
+public let kID = "Id"
+
 //View constatns
 public let kHEADERID = "headerId"
 public let kCELLID = "cellId"
@@ -19,7 +21,7 @@ public let kPROFILE = "Profile"
 public let kPOST = "Post"
 
 //User
-public let kID = "Id"
+
 public let kEMAIL = "email"
 public let kUSERNAME = "username"
 public let kPROFILEIMAGEURLIMAGEURL = "profileImageURL"

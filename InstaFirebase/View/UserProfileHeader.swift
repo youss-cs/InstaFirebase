@@ -120,14 +120,9 @@ class UserProfileHeader: UICollectionViewCell {
     fileprivate func setupProfileImage(imageUrl: String) {
         guard let url = URL(string: imageUrl) else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
-            if let error = error { print("Failed to retrieve image", error) }
-            guard let data = data else { return }
-            
-            DispatchQueue.main.async {
-                self.profileImage.image = UIImage(data: data)
-            }
-        }.resume()
+        StorageService.instance.downloadImage(at: url) { (image) in
+            self.profileImage.image = image
+        }
     }
     
     fileprivate func setupUserStatsView() {

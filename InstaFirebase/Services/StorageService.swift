@@ -15,7 +15,6 @@ class StorageService {
     private let reference = Storage.storage().reference()
     
     func uploadImage(image: UIImage, path: String, completion: @escaping (_ imageURL: String?) -> ()) {
-        
         guard let data = image.jpegData(compressionQuality: 0.4) else {
             completion(nil)
             return
@@ -43,5 +42,30 @@ class StorageService {
             })
         }
         
+    }
+    
+    /*func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
+        let reference = Storage.storage().reference(forURL: url.absoluteString)
+        let megaByte = Int64(1 * 1024 * 1024)
+        
+        reference.getData(maxSize: megaByte) { data, error in
+            guard let imageData = data else {
+                completion(nil)
+                return
+            }
+            
+            completion(UIImage(data: imageData))
+        }
+    }*/
+    
+    func downloadImage(at url: URL, completion: @escaping (UIImage?) -> Void) {
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            if let error = error { print("Failed to retrieve image", error) }
+            guard let data = data else { return }
+            
+            DispatchQueue.main.async {
+                completion(UIImage(data: data))
+            }
+        }.resume()
     }
 }
