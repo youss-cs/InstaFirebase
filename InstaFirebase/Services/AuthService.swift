@@ -68,14 +68,11 @@ class AuthService {
                 return
             }
             
-            StorageService.instance.uploadImage(image: image, completion: { (url) in
-                guard let imageURL = url?.absoluteString else {
-                    completion(nil)
-                    return
+            StorageService.instance.uploadImage(image: image, path: kPROFILE, completion: { (imageURL) in
+                if let imageURL = imageURL {
+                    dict[kPROFILEIMAGEURL] = imageURL
+                    self.saveUser(dictionary: dict)
                 }
-                
-                dict[kPROFILE] = imageURL
-                self.saveUser(dictionary: dict)
                 completion(nil)
             })
         })

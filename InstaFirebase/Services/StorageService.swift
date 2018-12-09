@@ -14,7 +14,7 @@ class StorageService {
     static let instance = StorageService()
     private let reference = Storage.storage().reference()
     
-    func uploadImage(image: UIImage, completion: @escaping (_ url: URL?) -> ()) {
+    func uploadImage(image: UIImage, path: String, completion: @escaping (_ imageURL: String?) -> ()) {
         
         guard let data = image.jpegData(compressionQuality: 0.4) else {
             completion(nil)
@@ -25,7 +25,7 @@ class StorageService {
         metadata.contentType = "image/jpeg"
         
         let imageName = [UUID().uuidString, String(Date().timeIntervalSince1970)].joined()
-        let storageRef = reference.child("ProfileImages").child(imageName)
+        let storageRef = reference.child(path).child(imageName)
         
         storageRef.putData(data, metadata: metadata) { (meta, error) in
             if error != nil {
@@ -34,12 +34,12 @@ class StorageService {
             }
             
             storageRef.downloadURL(completion: { (url, error) in
-                guard let downloadURL = url else {
+                guard let imageURL = url?.absoluteString else {
                     completion(nil)
                     return
                 }
                 
-                completion(downloadURL)
+                completion(imageURL)
             })
         }
         

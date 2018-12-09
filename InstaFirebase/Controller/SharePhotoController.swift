@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class SharePhotoController: UIViewController {
     
@@ -58,7 +59,34 @@ class SharePhotoController: UIViewController {
     }
     
     @objc func handleShare() {
+        guard let caption = textView.text, !caption.isEmpty else { return }
+        guard let image = selectedImage else { return }
+        guard let userId = AuthService.instance.currentUser()?.id else { return }
         
+        navigationItem.rightBarButtonItem?.isEnabled = false
+        
+        StorageService.instance.uploadImage(image: image, path: kPOST) { (url) in
+            guard let imageURL = url else { return }
+            
+            let dictionary : [String : Any] = [
+                kIMAGEURL : imageURL,
+                kCAPTION : caption,
+                kIMAGEWIDTH : image.size.width,
+                kIMAGEHEIGHT : image.size.height,
+                kCREATEDAT : Date(),
+                kUSERID : userId
+            ]
+            
+            guard let post = Post(dictionary: dictionary) else { return }
+            PostService.instance.savePostToFirestore(post: post, completion: { (error) in
+                if error != nil {
+                    self.navigationItem.rightBarButtonItem?.isEnabled = true
+                    return
+                }
+                
+                self.dismiss(animated: true)
+            })
+        }
     }
     
 }

@@ -19,7 +19,7 @@ struct User {
             kID : id,
             kEMAIL : email,
             kUSERNAME : username,
-            kPROFILE : profileImage
+            kPROFILEIMAGEURL : profileImage
         ]
     }
     
@@ -27,6 +27,6 @@ struct User {
         id = dictionary[kID] as! String
         email = dictionary[kEMAIL] as? String ?? ""
         username = dictionary[kUSERNAME] as? String ?? ""
-        profileImage = dictionary[kPROFILE] as? String ?? ""
+        profileImage = dictionary[kPROFILEIMAGEURL] as? String ?? ""
     }
 }
