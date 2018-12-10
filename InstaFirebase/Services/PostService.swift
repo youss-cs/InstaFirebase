@@ -33,4 +33,19 @@ class PostService {
         }
     }
     
+    func fetchPostsFromFirestore(completion: @escaping(_ posts: [Post]) -> ()){
+        var posts = [Post]()
+        reference(.Posts).getDocuments() { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            for document in snapshot.documents {
+                var data = document.data()
+                data[kID] = document.documentID
+                if let post = Post(dictionary: data) {
+                    posts.append(post)
+                }
+            }
+            completion(posts)
+        }
+    }
+    
 }
