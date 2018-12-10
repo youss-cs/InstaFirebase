@@ -19,7 +19,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         collectionView.backgroundColor = .white
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: kCELLID)
         
-        PostService.instance.fetchPostsFromFirestore { (posts) in
+        PostService.instance.fetchPosts { (posts) in
             self.posts = posts
             self.collectionView.reloadData()
         }

@@ -108,7 +108,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         let document = change.document
         var data = document.data()
         data[kID] = document.documentID
-        guard let post = Post(dictionary: document.data()) else { return }
+        guard let user = AuthService.instance.currentUser() else { return }
+        guard let post = Post(user: user, dictionary: document.data()) else { return }
         
         switch change.type {
         case .added:

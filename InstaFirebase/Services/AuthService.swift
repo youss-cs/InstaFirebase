@@ -38,9 +38,10 @@ class AuthService {
                 return
             } else {
                 //get user from firebase and save locally
-                self.fetchCurrentUserFromFirestore(userId: firUser!.user.uid) {
-                    completion(error)
-                }
+                self.fetchtUser(userId: firUser!.user.uid, completion: { (user) in
+                    self.saveUserLocally(user: user)
+                    completion(nil)
+                })
             }
         })
     }
@@ -123,16 +124,12 @@ class AuthService {
     
     //MARK: Fetch User funcs
     
-    func fetchCurrentUserFromFirestore(userId: String, completion: @escaping () -> Void) {
-        reference(.Users).document(userId).getDocument { (snapshot, error) in
-            guard let snapshot = snapshot else { return }
-            
-            if snapshot.exists {
-                print("updated current users param")
-                UserDefaults.standard.setValue(snapshot.data(), forKeyPath: kCURRENTUSER)
-                UserDefaults.standard.synchronize()
-                completion()
-            }
+    func fetchtUser(userId: String, completion: @escaping (_ user: User) -> Void) {
+        reference(.Users).document(userId).getDocument { (document, error) in
+            guard let document = document, document.exists else { return }
+            guard let dictionary = document.data() else { return }
+            let user = User(dictionary: dictionary)
+            completion(user)
         }
     }
 }

@@ -77,7 +77,8 @@ class SharePhotoController: UIViewController {
                 kUSERID : userId
             ]
             
-            guard let post = Post(dictionary: dictionary) else { return }
+            guard let user = AuthService.instance.currentUser() else { return }
+            guard let post = Post(user: user, dictionary: dictionary) else { return }
             PostService.instance.savePostToFirestore(post: post, completion: { (error) in
                 if error != nil {
                     self.navigationItem.rightBarButtonItem?.isEnabled = true

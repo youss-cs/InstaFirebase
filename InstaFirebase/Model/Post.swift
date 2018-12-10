@@ -16,7 +16,8 @@ struct Post {
     let imageWidth: CGFloat
     let imageHeight: CGFloat
     let createdAt: Date
-    let userId: String
+    let user: User
+    
     
     var dictionary: [String : Any] {
         var dic: [String: Any] = [
@@ -25,22 +26,18 @@ struct Post {
             kIMAGEWIDTH : imageWidth,
             kIMAGEHEIGHT : imageHeight,
             kCREATEDAT : createdAt,
-            kUSERID : userId
+            kUSERID : user.id
         ]
         
-        if let id = id {
-            dic[kID] = id
-        }
-        
+        if let id = id { dic[kID] = id }
         return dic
     }
     
-    init?(dictionary: [String : Any]) {
+    init?(user: User, dictionary: [String : Any]) {
         guard let _imageUrl = dictionary[kIMAGEURL] as? String,
             let _caption = dictionary[kCAPTION] as? String,
             let _imageWidth = dictionary[kIMAGEWIDTH] as? CGFloat,
-            let _imageHeight = dictionary[kIMAGEHEIGHT] as? CGFloat,
-            let _userId = dictionary[kUSERID] as? String
+            let _imageHeight = dictionary[kIMAGEHEIGHT] as? CGFloat
             else {
                 return nil
         }
@@ -50,7 +47,7 @@ struct Post {
         caption = _caption
         imageWidth = _imageWidth
         imageHeight = _imageHeight
-        userId = _userId
+        self.user = user
         
         if let _createdAt = dictionary[kCREATEDAT] as? Timestamp {
             createdAt = _createdAt.dateValue()
