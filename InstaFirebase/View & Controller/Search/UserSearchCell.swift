@@ -10,11 +10,18 @@ import UIKit
 
 class UserSearchCell: UITableViewCell {
     
+    var user: User? {
+        didSet {
+            guard let user = user else { return }
+            avatarImageView.loadImage(imageUrl: user.profileImage)
+            usernameLabel.text = user.username
+        }
+    }
+    
     let avatarImageView: CustomImageView = {
         let image = CustomImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
-        image.backgroundColor = .red
         return image
     }()
     

@@ -10,15 +10,22 @@ import UIKit
 
 class UserSearchController: UITableViewController,  UISearchResultsUpdating {
     
+    var users = [User]()
+    var filtredUsers = [User]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         definesPresentationContext = true
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.register(UserSearchCell.self, forCellReuseIdentifier: kCELLID)
         
+        setupTableView()
         setupSearchBar()
+        
+        AuthService.instance.fetchUsers { (users) in
+            self.users = users
+            self.filtredUsers = users
+            self.tableView.reloadData()
+        }
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -26,17 +33,26 @@ class UserSearchController: UITableViewController,  UISearchResultsUpdating {
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 6
+        return filtredUsers.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: kCELLID, for: indexPath) as! UserSearchCell
+        cell.user = filtredUsers[indexPath.row]
         return cell
     }
     
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
-        print(text)
+        filtredUsers = text.isEmpty ? users : filtredUsers.filter({$0.username.contains(text)})
+        tableView.reloadData()
+    }
+    
+    fileprivate func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.register(UserSearchCell.self, forCellReuseIdentifier: kCELLID)
     }
     
     fileprivate func setupSearchBar() {
