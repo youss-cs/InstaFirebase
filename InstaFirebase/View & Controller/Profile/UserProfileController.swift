@@ -11,18 +11,20 @@ import Firebase
 
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
-    var user = AuthService.instance.currentUser()
+    var user: User?
     var posts = [Post]()
     var postListener: ListenerRegistration?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        user = user ?? AuthService.instance.currentUser()
+        
         collectionView.backgroundColor = .white
         collectionView.register(UserProfileHeader.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: kHEADERID)
         collectionView.register(UserProfilePhotoCell.self, forCellWithReuseIdentifier: kCELLID)
         
-        navigationItem.title =  user?.username
+        navigationItem.title = user?.username
         
         setupLogOutButton()
         fetchProfilePosts()
@@ -82,16 +84,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         present(alert, animated: true, completion: nil)
     }
     
-    /*func fetchPosts() {
-        PostService.instance.fetchProfilePostsFromFirestore { (posts) in
-            self.posts = posts
-            self.collectionView.reloadData()
-        }
-    }*/
-    
     fileprivate func fetchProfilePosts() {
-        guard let userId = AuthService.init().currentUser()?.id else { return }
-        
+        guard let userId = user?.id else { return }
         postListener = reference(.Posts).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 print("Error: \(error?.localizedDescription ?? "No error")")

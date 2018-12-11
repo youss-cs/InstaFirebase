@@ -15,10 +15,6 @@ class AuthService {
     
     //MARK: Returning current user funcs
     
-    func currentId() -> String {
-        return Auth.auth().currentUser!.uid
-    }
-    
     func currentUser() -> User? {
         if Auth.auth().currentUser != nil {
             if let dictionary = UserDefaults.standard.object(forKey: kCURRENTUSER) as? [String : Any] {

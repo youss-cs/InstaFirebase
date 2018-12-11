@@ -42,6 +42,13 @@ class UserSearchController: UITableViewController,  UISearchResultsUpdating {
         return cell
     }
     
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let user = filtredUsers[indexPath.row]
+        let userProfile = UserProfileController(collectionViewLayout: UICollectionViewFlowLayout())
+        userProfile.user = user
+        navigationController?.pushViewController(userProfile, animated: true)
+    }
+    
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else { return }
         filtredUsers = text.isEmpty ? users : filtredUsers.filter({$0.username.contains(text)})
