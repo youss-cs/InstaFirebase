@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A105709721B99B9F00C75AE7 /* UserProfileHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A105709621B99B9F00C75AE7 /* UserProfileHeader.swift */; };
+		A10E766221C173F100598491 /* DateExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A10E766121C173F100598491 /* DateExt.swift */; };
 		A114202121BD564700382DA3 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202021BD564700382DA3 /* Post.swift */; };
 		A114202321BD569300382DA3 /* PostService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202221BD569300382DA3 /* PostService.swift */; };
 		A114202521BD669C00382DA3 /* UserProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A114202421BD669C00382DA3 /* UserProfilePhotoCell.swift */; };
@@ -47,6 +48,7 @@
 		69C8FACF18043B975907D0E3 /* Pods-InstaFirebase.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-InstaFirebase.debug.xcconfig"; path = "Pods/Target Support Files/Pods-InstaFirebase/Pods-InstaFirebase.debug.xcconfig"; sourceTree = "<group>"; };
 		79BCD2611720B94EFBAD6DD2 /* Pods_InstaFirebase.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstaFirebase.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A105709621B99B9F00C75AE7 /* UserProfileHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileHeader.swift; sourceTree = "<group>"; };
+		A10E766121C173F100598491 /* DateExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExt.swift; sourceTree = "<group>"; };
 		A114202021BD564700382DA3 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		A114202221BD569300382DA3 /* PostService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostService.swift; sourceTree = "<group>"; };
 		A114202421BD669C00382DA3 /* UserProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfilePhotoCell.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				A1F8A88121B81A9A00219249 /* Constants.swift */,
 				A114202621BD7F3500382DA3 /* CustomImageView.swift */,
 				A136EA5821C0065100741F41 /* QueryDocumentSnapshot.swift */,
+				A10E766121C173F100598491 /* DateExt.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -389,6 +392,7 @@
 				A105709721B99B9F00C75AE7 /* UserProfileHeader.swift in Sources */,
 				A1F8A88021B81A0300219249 /* AuthService.swift in Sources */,
 				A136EA5521BFF24900741F41 /* UserSearchController.swift in Sources */,
+				A10E766221C173F100598491 /* DateExt.swift in Sources */,
 				A136EA5721BFF84300741F41 /* UserSearchCell.swift in Sources */,
 				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A1B91C3421BC3F4100ACFAF7 /* SharePhotoController.swift in Sources */,

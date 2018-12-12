@@ -17,36 +17,27 @@ class PostService {
     
     //MARK: Fetch posts funcs
     
-    func fetchProfilePosts(completion: @escaping(_ posts: [Post]) -> ()){
-        var posts = [Post]()
-        guard let user = AuthService.instance.currentUser() else { return }
-        reference(.Posts).whereField(kUSERID, isEqualTo: user.id).getDocuments() { (snapshot, error) in
+    func fetchPostsWithUser(user: User, completion: @escaping (_ posts: [Post]) -> Void) {
+        reference(.Posts).whereField("userId", isEqualTo: user.id).getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
-            for document in snapshot.documents {
-                var data = document.data()
-                data[kID] = document.documentID
-                
-                if let post = Post(user: user, dictionary: data) {
-                    posts.append(post)
-                }
-            }
+            let posts = snapshot.documents.compactMap{ Post(user: user, dictionary: $0.dataWithId()) }
             completion(posts)
         }
     }
     
-    func fetchPosts(completion: @escaping(_ posts: [Post]) -> ()){
-        var posts = [Post]()
-        reference(.Posts).getDocuments() { (snapshot, error) in
+    func fetchFollowingPosts(completion: @escaping (_ posts: [Post]) -> Void) {
+        guard let userId = AuthService.instance.currentUser()?.id else { return }
+        
+        reference(.Following).document(userId).collection("Follower").getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
-            for document in snapshot.documents {
-                var data = document.data()
-                data[kID] = document.documentID
-                guard let user = AuthService.instance.currentUser() else { return }
-                if let post = Post(user: user, dictionary: data) {
-                    posts.append(post)
-                }
-            }
-            completion(posts)
+            
+            snapshot.documents.forEach({ (document) in
+                UserService.instance.fetchUser(userId: document.documentID, completion: { (user) in
+                    self.fetchPostsWithUser(user: user, completion: { (posts) in
+                        completion(posts)
+                    })
+                })
+            })
         }
     }
     
