@@ -13,6 +13,7 @@ import FirebaseStorage
 enum FCollectionReference: String {
     case Users
     case Posts
+    case Following
 }
 
 

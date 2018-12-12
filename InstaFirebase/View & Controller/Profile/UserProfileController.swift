@@ -27,7 +27,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         navigationItem.title = user?.username
         
         setupLogOutButton()
-        fetchProfilePosts()
+        fetchPosts()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -84,7 +84,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         present(alert, animated: true, completion: nil)
     }
     
-    fileprivate func fetchProfilePosts() {
+    fileprivate func fetchPosts() {
         guard let userId = user?.id else { return }
         postListener = reference(.Posts).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
@@ -100,10 +100,8 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     fileprivate func handleDocumentChange(_ change: DocumentChange) {
         let document = change.document
-        var data = document.data()
-        data[kID] = document.documentID
-        guard let user = AuthService.instance.currentUser() else { return }
-        guard let post = Post(user: user, dictionary: document.data()) else { return }
+        guard let user = user else { return }
+        guard let post = Post(user: user, dictionary: document.dataWithId()) else { return }
         
         switch change.type {
         case .added:

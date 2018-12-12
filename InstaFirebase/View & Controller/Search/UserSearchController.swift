@@ -21,7 +21,7 @@ class UserSearchController: UITableViewController,  UISearchResultsUpdating {
         setupTableView()
         setupSearchBar()
         
-        AuthService.instance.fetchUsers { (users) in
+        UserService.instance.fetchUsers { (users) in
             self.users = users
             self.filtredUsers = users
             self.tableView.reloadData()
