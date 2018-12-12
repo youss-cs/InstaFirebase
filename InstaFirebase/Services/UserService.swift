@@ -39,21 +39,17 @@ class UserService {
         }
     }
     
-    func follow(followerId: String, completion: @escaping () -> Void) {
+    func follow(followerId: String, completion: @escaping (_ error: Error?) -> Void) {
         guard let userId = AuthService.instance.currentUser()?.id else { return }
         reference(.Following).document("\(userId)/Follower/\(followerId)").setData(["exist" : true]) { (error) in
-            if error == nil {
-                completion()
-            }
+            completion(error)
         }
     }
     
-    func unFollow(followerId: String, completion: @escaping () -> Void) {
+    func unFollow(followerId: String, completion: @escaping (_ error: Error?) -> Void) {
         guard let userId = AuthService.instance.currentUser()?.id else { return }
         reference(.Following).document("\(userId)/Follower/\(followerId)").delete { (error) in
-            if error == nil {
-                completion()
-            }
+            completion(error)
         }
     }
     

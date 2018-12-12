@@ -166,11 +166,19 @@ class UserProfileHeader: UICollectionViewCell {
         guard let userId = user?.id else { return }
         
         if editProfileFollowButton.titleLabel?.text == "Unfollow" {
-            UserService.instance.unFollow(followerId: userId) {
+            UserService.instance.unFollow(followerId: userId) { (error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                    return
+                }
                 self.setupFollowStyle()
             }
         } else {
-            UserService.instance.follow(followerId: userId) {
+            UserService.instance.follow(followerId: userId) { (error) in
+                if error != nil {
+                    print(error?.localizedDescription ?? "")
+                    return
+                }
                 self.setupUnfollowStyle()
             }
         }
