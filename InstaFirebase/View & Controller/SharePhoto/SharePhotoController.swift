@@ -86,6 +86,7 @@ class SharePhotoController: UIViewController {
                 }
                 
                 self.dismiss(animated: true)
+                NotificationCenter.default.post(name: didSharePostNotification, object: nil)
             })
         }
     }

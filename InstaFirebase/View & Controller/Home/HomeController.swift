@@ -16,32 +16,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(fetchAllPosts), name: didSharePostNotification, object: nil)
+        
         collectionView.backgroundColor = .white
         collectionView.register(HomePostCell.self, forCellWithReuseIdentifier: kCELLID)
         
+        let refreshControl = UIRefreshControl()
+        refreshControl.addTarget(self, action: #selector(handleRefresh), for: .valueChanged)
+        
+        collectionView.refreshControl = refreshControl
+        
         setupNavigationItem()
         
-        fetchPosts()
-        fetchFollowingPosts()
-    }
-    
-    fileprivate func fetchPosts() {
-        guard let user = AuthService.instance.currentUser() else { return }
-        PostService.instance.fetchPostsWithUser(user: user) { (posts) in
-            self.reloadCollection(posts: posts)
-        }
-    }
-    
-    fileprivate func fetchFollowingPosts() {
-        PostService.instance.fetchFollowingPosts { (posts) in
-            self.reloadCollection(posts: posts)
-        }
-    }
-    
-    fileprivate func reloadCollection(posts: [Post]) {
-        self.posts += posts
-        self.posts.sort{ $0.createdAt > $1.createdAt }
-        self.collectionView.reloadData()
+        fetchAllPosts()
     }
     
     fileprivate func setupNavigationItem() {
@@ -65,5 +52,35 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         
         cell.post = posts[indexPath.item]
         return cell
+    }
+    
+    fileprivate func fetchPosts() {
+        guard let user = AuthService.instance.currentUser() else { return }
+        PostService.instance.fetchPostsWithUser(user: user) { (posts) in
+            self.reloadCollection(posts: posts)
+        }
+    }
+    
+    fileprivate func fetchFollowingPosts() {
+        PostService.instance.fetchFollowingPosts { (posts) in
+            self.reloadCollection(posts: posts)
+        }
+    }
+    
+    fileprivate func reloadCollection(posts: [Post]) {
+        self.posts += posts
+        self.posts.sort{ $0.createdAt > $1.createdAt }
+        self.collectionView.refreshControl?.endRefreshing()
+        self.collectionView.reloadData()
+    }
+    
+    @objc fileprivate func fetchAllPosts() {
+        fetchPosts()
+        fetchFollowingPosts()
+    }
+    
+    @objc func handleRefresh() {
+        posts.removeAll()
+        fetchAllPosts()
     }
 }

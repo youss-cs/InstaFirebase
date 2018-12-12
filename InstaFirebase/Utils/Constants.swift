@@ -10,6 +10,9 @@ import Foundation
 
 let userDefaults = UserDefaults.standard
 
+//Notifications
+let didSharePostNotification = Notification.Name("didSharePostNotification")
+
 public let kID = "Id"
 
 //View constatns

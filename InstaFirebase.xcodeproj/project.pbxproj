@@ -223,10 +223,10 @@
 				A134C3F721B7FA5A0068A077 /* UIColorExt.swift */,
 				A134C3F921B7FA6B0068A077 /* UIViewExt.swift */,
 				A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */,
-				A1F8A88121B81A9A00219249 /* Constants.swift */,
 				A114202621BD7F3500382DA3 /* CustomImageView.swift */,
 				A136EA5821C0065100741F41 /* QueryDocumentSnapshot.swift */,
 				A10E766121C173F100598491 /* DateExt.swift */,
+				A1F8A88121B81A9A00219249 /* Constants.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
