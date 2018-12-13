@@ -30,6 +30,8 @@ class CameraController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        transitioningDelegate = self
+        
         setupCaptureSession()
         setupView()
     }
@@ -93,5 +95,15 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
         view.addSubview(containerView)
         
         containerView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor)
+    }
+}
+
+extension CameraController: UIViewControllerTransitioningDelegate {
+    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomAnimationPresentor()
+    }
+    
+    func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return CustomAnimationDismisser()
     }
 }
