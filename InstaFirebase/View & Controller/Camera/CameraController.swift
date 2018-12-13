@@ -11,6 +11,8 @@ import AVFoundation
 
 class CameraController: UIViewController {
     
+    let output = AVCapturePhotoOutput()
+    
     let dismissButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "right_arrow_shadow").withRenderingMode(.alwaysOriginal), for: .normal)
@@ -54,7 +56,6 @@ class CameraController: UIViewController {
             print("Could not setup camera input:", err)
         }
         
-        let output = AVCapturePhotoOutput()
         if captureSession.canAddOutput(output) {
             captureSession.addOutput(output)
         }
@@ -67,10 +68,28 @@ class CameraController: UIViewController {
     }
     
     @objc func handleCapturePhoto() {
-        print("Capturing photo...")
+        let photoSettings = AVCapturePhotoSettings()
+        
+        if let previewFormatType = photoSettings.availablePreviewPhotoPixelFormatTypes.first {
+            photoSettings.previewPhotoFormat = [kCVPixelBufferPixelFormatTypeKey as String: previewFormatType]
+        }
+        
+        output.capturePhoto(with: photoSettings, delegate: self)
     }
     
     @objc func handleDismiss() {
         dismiss(animated: true, completion: nil)
+    }
+}
+
+extension CameraController: AVCapturePhotoCaptureDelegate {
+    func photoOutput(_ output: AVCapturePhotoOutput, didFinishProcessingPhoto photo: AVCapturePhoto, error: Error?) {
+        
+        guard let data = photo.fileDataRepresentation(), let image =  UIImage(data: data) else { return }
+        
+        let previewImageView = UIImageView(image: image)
+        view.addSubview(previewImageView)
+        
+        previewImageView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor)
     }
 }
