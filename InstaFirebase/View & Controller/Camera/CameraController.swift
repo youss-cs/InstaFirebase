@@ -87,9 +87,11 @@ extension CameraController: AVCapturePhotoCaptureDelegate {
         
         guard let data = photo.fileDataRepresentation(), let image =  UIImage(data: data) else { return }
         
-        let previewImageView = UIImageView(image: image)
-        view.addSubview(previewImageView)
+        let containerView = PreviewPhotoContainerView()
+        containerView.previewImageView.image = image
         
-        previewImageView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor)
+        view.addSubview(containerView)
+        
+        containerView.anchor(top: view.topAnchor, left: view.leadingAnchor, bottom: view.bottomAnchor, right: view.trailingAnchor)
     }
 }
