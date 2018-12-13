@@ -27,6 +27,7 @@
 		A136EA5521BFF24900741F41 /* UserSearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A136EA5421BFF24900741F41 /* UserSearchController.swift */; };
 		A136EA5721BFF84300741F41 /* UserSearchCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A136EA5621BFF84300741F41 /* UserSearchCell.swift */; };
 		A136EA5921C0065100741F41 /* QueryDocumentSnapshot.swift in Sources */ = {isa = PBXBuildFile; fileRef = A136EA5821C0065100741F41 /* QueryDocumentSnapshot.swift */; };
+		A13C4BDA21C27F4200F70B66 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C4BD921C27F4200F70B66 /* CameraController.swift */; };
 		A1463E1E21BAB0B40090543B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1D21BAB0B40090543B /* LoginController.swift */; };
 		A1463E2021BAB4C60090543B /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */; };
 		A17AF44421C127E90068F2D0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF44321C127E90068F2D0 /* UserService.swift */; };
@@ -69,6 +70,7 @@
 		A136EA5421BFF24900741F41 /* UserSearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchController.swift; sourceTree = "<group>"; };
 		A136EA5621BFF84300741F41 /* UserSearchCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSearchCell.swift; sourceTree = "<group>"; };
 		A136EA5821C0065100741F41 /* QueryDocumentSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueryDocumentSnapshot.swift; sourceTree = "<group>"; };
+		A13C4BD921C27F4200F70B66 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
 		A1463E1D21BAB0B40090543B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		A17AF44321C127E90068F2D0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 		A134C3F421B7FA290068A077 /* View & Controller */ = {
 			isa = PBXGroup;
 			children = (
+				A13C4BD821C27F2C00F70B66 /* Camera */,
 				A136EA5321BFF21400741F41 /* Search */,
 				A120E74E21BE899400D55BD5 /* Home */,
 				A120E74D21BE896500D55BD5 /* SharePhoto */,
@@ -250,6 +253,14 @@
 				A136EA5621BFF84300741F41 /* UserSearchCell.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		A13C4BD821C27F2C00F70B66 /* Camera */ = {
+			isa = PBXGroup;
+			children = (
+				A13C4BD921C27F4200F70B66 /* CameraController.swift */,
+			);
+			path = Camera;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -409,6 +420,7 @@
 				A1F8A88421B81B2A00219249 /* FCollectionReference.swift in Sources */,
 				A114202321BD569300382DA3 /* PostService.swift in Sources */,
 				A1B46F3A21BC0D1E007905A5 /* PhotoSelectorCell.swift in Sources */,
+				A13C4BDA21C27F4200F70B66 /* CameraController.swift in Sources */,
 				A114202121BD564700382DA3 /* Post.swift in Sources */,
 				A120E75221BE8B0B00D55BD5 /* HomePostCell.swift in Sources */,
 				A120E75021BE89BA00D55BD5 /* HomeController.swift in Sources */,
