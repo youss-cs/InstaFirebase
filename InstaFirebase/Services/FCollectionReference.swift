@@ -17,7 +17,6 @@ enum FCollectionReference: String {
     case Comments
 }
 
-
 func reference(_ collectionReference: FCollectionReference) -> CollectionReference {
     return Firestore.firestore().collection(collectionReference.rawValue)
 }

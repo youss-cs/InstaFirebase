@@ -11,6 +11,7 @@ import UIKit
 class CommentsController: UITableViewController {
     
     var post: Post?
+    var comments = [Comment]()
     
     lazy var containerView: UIView = {
         let containerView = UIView()
@@ -42,7 +43,13 @@ class CommentsController: UITableViewController {
         super.viewDidLoad()
         
         title = "Comments"
-        tableView.backgroundColor = .red
+        setupTableView()
+        
+        guard let postId = post?.id else { return }
+        CommentService.instance.fetchComments(postId: postId) { (comments) in
+            self.comments = comments
+            self.tableView.reloadData()
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -63,6 +70,27 @@ class CommentsController: UITableViewController {
     
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 66
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return comments.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: kCELLID, for: indexPath) as! CommentCell
+        cell.comment = comments[indexPath.row]
+        return cell
+    }
+    
+    fileprivate func setupTableView() {
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.tableFooterView = UIView()
+        tableView.register(CommentCell.self, forCellReuseIdentifier: kCELLID)
     }
     
     @objc func handleSend() {
