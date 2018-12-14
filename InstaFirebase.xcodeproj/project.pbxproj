@@ -34,6 +34,8 @@
 		A1463E1E21BAB0B40090543B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1D21BAB0B40090543B /* LoginController.swift */; };
 		A1463E2021BAB4C60090543B /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */; };
 		A16FF2A021C3CF1600448985 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16FF29F21C3CF1600448985 /* CommentsController.swift */; };
+		A16FF2A221C3FA7600448985 /* CommentService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16FF2A121C3FA7600448985 /* CommentService.swift */; };
+		A16FF2A421C3FABB00448985 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16FF2A321C3FABB00448985 /* Comment.swift */; };
 		A17AF44421C127E90068F2D0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF44321C127E90068F2D0 /* UserService.swift */; };
 		A1B46F3821BC00AC007905A5 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B46F3721BC00AC007905A5 /* PhotoSelectorController.swift */; };
 		A1B46F3A21BC0D1E007905A5 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B46F3921BC0D1E007905A5 /* PhotoSelectorCell.swift */; };
@@ -81,6 +83,8 @@
 		A1463E1D21BAB0B40090543B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		A16FF29F21C3CF1600448985 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
+		A16FF2A121C3FA7600448985 /* CommentService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentService.swift; sourceTree = "<group>"; };
+		A16FF2A321C3FABB00448985 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A17AF44321C127E90068F2D0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		A1B46F3721BC00AC007905A5 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		A1B46F3921BC0D1E007905A5 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
@@ -210,6 +214,7 @@
 			children = (
 				A1F8A88721B8540400219249 /* User.swift */,
 				A114202021BD564700382DA3 /* Post.swift */,
+				A16FF2A321C3FABB00448985 /* Comment.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -250,6 +255,7 @@
 				A1F8A88521B8522E00219249 /* StorageService.swift */,
 				A114202221BD569300382DA3 /* PostService.swift */,
 				A17AF44321C127E90068F2D0 /* UserService.swift */,
+				A16FF2A121C3FA7600448985 /* CommentService.swift */,
 				A1F8A88321B81B2A00219249 /* FCollectionReference.swift */,
 			);
 			path = Services;
@@ -423,12 +429,14 @@
 				A12B52BE21B9413400564F6A /* MainTabBarController.swift in Sources */,
 				A105709721B99B9F00C75AE7 /* UserProfileHeader.swift in Sources */,
 				A1F8A88021B81A0300219249 /* AuthService.swift in Sources */,
+				A16FF2A421C3FABB00448985 /* Comment.swift in Sources */,
 				A136EA5521BFF24900741F41 /* UserSearchController.swift in Sources */,
 				A10E766221C173F100598491 /* DateExt.swift in Sources */,
 				A16FF2A021C3CF1600448985 /* CommentsController.swift in Sources */,
 				A136EA5721BFF84300741F41 /* UserSearchCell.swift in Sources */,
 				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A1B91C3421BC3F4100ACFAF7 /* SharePhotoController.swift in Sources */,
+				A16FF2A221C3FA7600448985 /* CommentService.swift in Sources */,
 				A114202721BD7F3500382DA3 /* CustomImageView.swift in Sources */,
 				A12B52C021B941FB00564F6A /* UserProfileController.swift in Sources */,
 				A134C3E121B7F9D50068A077 /* AppDelegate.swift in Sources */,

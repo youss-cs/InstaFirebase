@@ -10,7 +10,9 @@ import UIKit
 
 class CommentsController: UITableViewController {
     
-    let containerView: UIView = {
+    var post: Post?
+    
+    lazy var containerView: UIView = {
         let containerView = UIView()
         containerView.backgroundColor = .white
         containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
@@ -19,17 +21,21 @@ class CommentsController: UITableViewController {
         sendButton.setTitle("Send", for: .normal)
         sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
         sendButton.setTitleColor(.black, for: .normal)
+        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
         
-        let textField = UITextField()
-        textField.placeholder = "Enter comment"
-        
-        containerView.addSubview(textField)
+        containerView.addSubview(commentTextField)
         containerView.addSubview(sendButton)
         
-        textField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
+        commentTextField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
         sendButton.anchor(top: containerView.topAnchor, bottom: containerView.bottomAnchor, right: containerView.trailingAnchor, paddingRight: 12, width: 50)
         
         return containerView
+    }()
+    
+    let commentTextField: UITextField = {
+        let textField = UITextField()
+        textField.placeholder = "Enter comment"
+        return textField
     }()
     
     override func viewDidLoad() {
@@ -57,5 +63,27 @@ class CommentsController: UITableViewController {
     
     override var canBecomeFirstResponder: Bool {
         return true
+    }
+    
+    @objc func handleSend() {
+        guard let user = AuthService.instance.currentUser() else { return }
+        guard let post = post, let text = commentTextField.text else { return }
+        guard let postId = post.id else { return }
+        
+        let dictionary : [String : Any] = [
+            kTEXT : text,
+            kCREATEDAT : Date(),
+            kPOSTID : postId
+        ]
+        
+        guard let comment = Comment(dictionary: dictionary, user: user) else { return }
+        CommentService.instance.saveCommentToFirestore(comment: comment, completion: { (error) in
+            if let error = error {
+                print("Failed to save comment ", error)
+                return
+            }
+            
+            print("Comment successfully saved")
+        })
     }
 }
