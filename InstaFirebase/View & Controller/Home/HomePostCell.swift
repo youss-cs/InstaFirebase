@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol HomePostCellDelegate {
+    func didTapComment(post: Post)
+}
+
 class HomePostCell: UICollectionViewCell {
+    
+    var delegate: HomePostCellDelegate?
     
     var post: Post? {
         didSet {
@@ -57,10 +63,11 @@ class HomePostCell: UICollectionViewCell {
         return button
     }()
     
-    let commentButton : UIButton = {
+    lazy var commentButton : UIButton = {
         let button = UIButton(type: .system)
         button.setImage(#imageLiteral(resourceName: "comment").withRenderingMode(.alwaysOriginal), for: .normal)
         button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(handleComment), for: .touchUpInside)
         return button
     }()
     
@@ -117,7 +124,7 @@ class HomePostCell: UICollectionViewCell {
     }
     
     func setupActionButtons() {
-        let stackView = UIStackView(arrangedSubviews: [likeButton,shareButton,commentButton])
+        let stackView = UIStackView(arrangedSubviews: [likeButton, commentButton, shareButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
         
@@ -141,5 +148,10 @@ class HomePostCell: UICollectionViewCell {
         attributedText.append(NSAttributedString(string: timeAgo, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 14), NSAttributedString.Key.foregroundColor: UIColor.gray]))
         
         captionLabel.attributedText = attributedText
+    }
+    
+    @objc func handleComment() {
+        guard let post = post else { return }
+        delegate?.didTapComment(post: post)
     }
 }

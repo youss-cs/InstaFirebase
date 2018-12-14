@@ -52,7 +52,8 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCELLID, for: indexPath) as! HomePostCell
         
         if indexPath.item < posts.count { cell.post = posts[indexPath.item] }
-
+        cell.delegate = self
+        
         return cell
     }
     
@@ -89,5 +90,11 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     @objc func handleCamera() {
         let cameraController = CameraController()
         present(cameraController, animated: true, completion: nil)
+    }
+}
+
+extension HomeController: HomePostCellDelegate {
+    func didTapComment(post: Post) {
+        print("Did tap comment")
     }
 }
