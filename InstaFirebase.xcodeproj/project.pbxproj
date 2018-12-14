@@ -171,6 +171,8 @@
 			children = (
 				A120E74F21BE89BA00D55BD5 /* HomeController.swift */,
 				A120E75121BE8B0B00D55BD5 /* HomePostCell.swift */,
+				A16FF29F21C3CF1600448985 /* CommentsController.swift */,
+				A16FF2A521C40C4900448985 /* CommentCell.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -224,7 +226,6 @@
 		A134C3F421B7FA290068A077 /* View & Controller */ = {
 			isa = PBXGroup;
 			children = (
-				A16FF29E21C3CF0800448985 /* Comment */,
 				A13C4BD821C27F2C00F70B66 /* Camera */,
 				A136EA5321BFF21400741F41 /* Search */,
 				A120E74E21BE899400D55BD5 /* Home */,
@@ -281,15 +282,6 @@
 				A13C4BDF21C2A59600F70B66 /* CustomAnimationDismisser.swift */,
 			);
 			path = Camera;
-			sourceTree = "<group>";
-		};
-		A16FF29E21C3CF0800448985 /* Comment */ = {
-			isa = PBXGroup;
-			children = (
-				A16FF29F21C3CF1600448985 /* CommentsController.swift */,
-				A16FF2A521C40C4900448985 /* CommentCell.swift */,
-			);
-			path = Comment;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

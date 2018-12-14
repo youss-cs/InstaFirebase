@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class CommentsController: UITableViewController {
     
@@ -30,6 +31,11 @@ class CommentsController: UITableViewController {
         commentTextField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
         sendButton.anchor(top: containerView.topAnchor, bottom: containerView.bottomAnchor, right: containerView.trailingAnchor, paddingRight: 12, width: 50)
         
+        let lineSeparatorView = UIView()
+        lineSeparatorView.backgroundColor = UIColor.rgb(230, 230, 230)
+        containerView.addSubview(lineSeparatorView)
+        lineSeparatorView.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: nil, right: containerView.trailingAnchor, height: 0.5)
+        
         return containerView
     }()
     
@@ -45,11 +51,7 @@ class CommentsController: UITableViewController {
         title = "Comments"
         setupTableView()
         
-        guard let postId = post?.id else { return }
-        CommentService.instance.fetchComments(postId: postId) { (comments) in
-            self.comments = comments
-            self.tableView.reloadData()
-        }
+        fetchComments()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -72,10 +74,6 @@ class CommentsController: UITableViewController {
         return true
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 66
-    }
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return comments.count
     }
@@ -89,8 +87,38 @@ class CommentsController: UITableViewController {
     fileprivate func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
         tableView.register(CommentCell.self, forCellReuseIdentifier: kCELLID)
+    }
+    
+    func fetchComments() {
+        guard let postId = post?.id else { return }
+        reference(.Comments).whereField(kPOSTID, isEqualTo: postId).addSnapshotListener { (snapshot, erro) in
+            guard let snapshot = snapshot else { return }
+            snapshot.documentChanges.forEach({ (change) in
+                self.handleDocumentChange(change: change)
+            })
+        }
+    }
+    
+    func handleDocumentChange(change: DocumentChange) {
+        let dictionary = change.document.data()
+        guard let userId = dictionary[kUSERID] as? String else { return }
+        
+        UserService.instance.fetchUser(userId: userId) { (user) in
+            guard let comment = Comment(dictionary: dictionary, user: user) else { return }
+            
+            switch change.type {
+            case .added:
+                self.comments.append(comment)
+                let indexPath = IndexPath(row: self.comments.count - 1, section: 0)
+                self.tableView.insertRows(at: [indexPath], with: .automatic)
+            default:
+                break
+            }
+        }
     }
     
     @objc func handleSend() {
