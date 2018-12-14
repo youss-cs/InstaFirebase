@@ -95,6 +95,7 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
 
 extension HomeController: HomePostCellDelegate {
     func didTapComment(post: Post) {
-        print("Did tap comment")
+        let commentsController = CommentsController()
+        navigationController?.pushViewController(commentsController, animated: true)
     }
 }
