@@ -18,6 +18,7 @@ public let kID = "Id"
 //View constatns
 public let kHEADERID = "headerId"
 public let kCELLID = "cellId"
+public let kCELLHOMEID = "cellHomeId"
 
 //Storage path
 public let kPROFILE = "Profile"
