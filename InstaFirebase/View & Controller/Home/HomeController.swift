@@ -59,19 +59,19 @@ class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLa
     
     fileprivate func fetchPosts() {
         guard let user = AuthService.instance.currentUser() else { return }
-        PostService.instance.fetchPostsWithUser(user: user) { (posts) in
-            self.reloadCollection(posts: posts)
+        PostService.instance.fetchPostsWithUser(user: user) { (post) in
+            self.reloadCollection(post: post)
         }
     }
     
     fileprivate func fetchFollowingPosts() {
-        PostService.instance.fetchFollowingPosts { (posts) in
-            self.reloadCollection(posts: posts)
+        PostService.instance.fetchFollowingPosts { (post) in
+            self.reloadCollection(post: post)
         }
     }
     
-    fileprivate func reloadCollection(posts: [Post]) {
-        self.posts += posts
+    fileprivate func reloadCollection(post: Post) {
+        self.posts.append(post)
         self.posts.sort{ $0.createdAt > $1.createdAt }
         self.collectionView.refreshControl?.endRefreshing()
         self.collectionView.reloadData()
@@ -98,5 +98,21 @@ extension HomeController: HomePostCellDelegate {
         let commentsController = CommentsController()
         commentsController.post = post
         navigationController?.pushViewController(commentsController, animated: true)
+    }
+    
+    func didLikePost(cell: HomePostCell) {
+        guard let indexPath = collectionView.indexPath(for: cell) else { return }
+    
+        let post = posts[indexPath.item]
+        
+        PostService.instance.toggleLike(post: post) { (error) in
+            if let error = error {
+                print(error)
+                return
+            }
+            
+            self.posts[indexPath.item].hasLiked = !post.hasLiked
+            self.collectionView.reloadItems(at: [indexPath])
+        }
     }
 }

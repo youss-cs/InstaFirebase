@@ -16,6 +16,7 @@ struct Post {
     let imageWidth: CGFloat
     let imageHeight: CGFloat
     let createdAt: Date
+    var hasLiked = false
     let user: User
     
     
