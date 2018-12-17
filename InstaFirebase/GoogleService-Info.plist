@@ -7,9 +7,9 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>543599703831-a9jluv1l1kd418gqhogvam6jlcc1ruf8.apps.googleusercontent.com</string>
+	<string>543599703831-8scr8p9epnrkk34pvmipb1074ulp8fop.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.543599703831-a9jluv1l1kd418gqhogvam6jlcc1ruf8</string>
+	<string>com.googleusercontent.apps.543599703831-8scr8p9epnrkk34pvmipb1074ulp8fop</string>
 	<key>API_KEY</key>
 	<string>AIzaSyBA1gcZgqCj3DbZFdEh1ukPL-AzKy2lTo8</string>
 	<key>GCM_SENDER_ID</key>
@@ -17,7 +17,7 @@
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>com.youss.InstaFirebase</string>
+	<string>com.youss.Insta</string>
 	<key>PROJECT_ID</key>
 	<string>instagram-6dd76</string>
 	<key>STORAGE_BUCKET</key>
@@ -33,7 +33,7 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:543599703831:ios:9376d6553ee2d39b</string>
+	<string>1:543599703831:ios:aca3fdd84b782d15</string>
 	<key>DATABASE_URL</key>
 	<string>https://instagram-6dd76.firebaseio.com</string>
 </dict>

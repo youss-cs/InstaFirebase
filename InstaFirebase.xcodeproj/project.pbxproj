@@ -38,11 +38,11 @@
 		A16FF2A421C3FABB00448985 /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16FF2A321C3FABB00448985 /* Comment.swift */; };
 		A16FF2A621C40C4900448985 /* CommentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16FF2A521C40C4900448985 /* CommentCell.swift */; };
 		A17AF44421C127E90068F2D0 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A17AF44321C127E90068F2D0 /* UserService.swift */; };
+		A1A4EA3121C7E520004654AC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1A4EA3021C7E520004654AC /* GoogleService-Info.plist */; };
 		A1B46F3821BC00AC007905A5 /* PhotoSelectorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B46F3721BC00AC007905A5 /* PhotoSelectorController.swift */; };
 		A1B46F3A21BC0D1E007905A5 /* PhotoSelectorCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B46F3921BC0D1E007905A5 /* PhotoSelectorCell.swift */; };
 		A1B46F3C21BC16A6007905A5 /* PhotoSelectorHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B46F3B21BC16A6007905A5 /* PhotoSelectorHeader.swift */; };
 		A1B91C3421BC3F4100ACFAF7 /* SharePhotoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B91C3321BC3F4100ACFAF7 /* SharePhotoController.swift */; };
-		A1F8A87C21B8172B00219249 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A1F8A87B21B8172B00219249 /* GoogleService-Info.plist */; };
 		A1F8A88021B81A0300219249 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8A87F21B81A0300219249 /* AuthService.swift */; };
 		A1F8A88221B81A9A00219249 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8A88121B81A9A00219249 /* Constants.swift */; };
 		A1F8A88421B81B2A00219249 /* FCollectionReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1F8A88321B81B2A00219249 /* FCollectionReference.swift */; };
@@ -88,11 +88,12 @@
 		A16FF2A321C3FABB00448985 /* Comment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		A16FF2A521C40C4900448985 /* CommentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentCell.swift; sourceTree = "<group>"; };
 		A17AF44321C127E90068F2D0 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		A1A4EA2F21C7E3CA004654AC /* InstaFirebase.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = InstaFirebase.entitlements; sourceTree = "<group>"; };
+		A1A4EA3021C7E520004654AC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1B46F3721BC00AC007905A5 /* PhotoSelectorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorController.swift; sourceTree = "<group>"; };
 		A1B46F3921BC0D1E007905A5 /* PhotoSelectorCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorCell.swift; sourceTree = "<group>"; };
 		A1B46F3B21BC16A6007905A5 /* PhotoSelectorHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectorHeader.swift; sourceTree = "<group>"; };
 		A1B91C3321BC3F4100ACFAF7 /* SharePhotoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SharePhotoController.swift; sourceTree = "<group>"; };
-		A1F8A87B21B8172B00219249 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A1F8A87F21B81A0300219249 /* AuthService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		A1F8A88121B81A9A00219249 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		A1F8A88321B81B2A00219249 /* FCollectionReference.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FCollectionReference.swift; sourceTree = "<group>"; };
@@ -198,6 +199,7 @@
 		A134C3DF21B7F9D50068A077 /* InstaFirebase */ = {
 			isa = PBXGroup;
 			children = (
+				A1A4EA2F21C7E3CA004654AC /* InstaFirebase.entitlements */,
 				A134C3F621B7FA400068A077 /* Services */,
 				A134C3F521B7FA2F0068A077 /* Utils */,
 				A134C3F421B7FA290068A077 /* View & Controller */,
@@ -208,7 +210,7 @@
 				A134C3E721B7F9D50068A077 /* Assets.xcassets */,
 				A134C3E921B7F9D50068A077 /* LaunchScreen.storyboard */,
 				A134C3EC21B7F9D50068A077 /* Info.plist */,
-				A1F8A87B21B8172B00219249 /* GoogleService-Info.plist */,
+				A1A4EA3021C7E520004654AC /* GoogleService-Info.plist */,
 			);
 			path = InstaFirebase;
 			sourceTree = "<group>";
@@ -318,6 +320,11 @@
 				TargetAttributes = {
 					A134C3DC21B7F9D50068A077 = {
 						CreatedOnToolsVersion = 10.1;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -345,7 +352,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A134C3EB21B7F9D50068A077 /* LaunchScreen.storyboard in Resources */,
-				A1F8A87C21B8172B00219249 /* GoogleService-Info.plist in Resources */,
+				A1A4EA3121C7E520004654AC /* GoogleService-Info.plist in Resources */,
 				A134C3E821B7F9D50068A077 /* Assets.xcassets in Resources */,
 				A134C3E621B7F9D50068A077 /* Main.storyboard in Resources */,
 			);
@@ -600,14 +607,15 @@
 			baseConfigurationReference = 69C8FACF18043B975907D0E3 /* Pods-InstaFirebase.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InstaFirebase/InstaFirebase.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J23784DB3R;
+				DEVELOPMENT_TEAM = GL8H624Y4T;
 				INFOPLIST_FILE = InstaFirebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.youss.InstaFirebase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youss.Insta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -619,14 +627,15 @@
 			baseConfigurationReference = 0E93E8DF5BF96D11850A1446 /* Pods-InstaFirebase.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = InstaFirebase/InstaFirebase.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = J23784DB3R;
+				DEVELOPMENT_TEAM = GL8H624Y4T;
 				INFOPLIST_FILE = InstaFirebase/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.youss.InstaFirebase;
+				PRODUCT_BUNDLE_IDENTIFIER = com.youss.Insta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
