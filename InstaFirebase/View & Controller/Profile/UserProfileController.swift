@@ -13,7 +13,9 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     
     var user: User?
     var posts = [Post]()
-    var postListener: ListenerRegistration?
+    var lastDocument: QueryDocumentSnapshot?
+    var limit = 4
+    var lastPage = false
     var isGridView = true
     
     override func viewDidLoad() {
@@ -29,7 +31,7 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         navigationItem.title = user?.username
         
         setupLogOutButton()
-        fetchPosts()
+        fetchFirstPosts()
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -44,6 +46,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if indexPath.row == posts.count - 1 && !lastPage {
+            fetchNextPosts()
+        }
+        
         if isGridView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: kCELLID, for: indexPath) as! UserProfilePhotoCell
             cell.post = posts[indexPath.item]
@@ -101,9 +107,10 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         present(alert, animated: true, completion: nil)
     }
     
-    fileprivate func fetchPosts() {
+    fileprivate func fetchProfilePosts() {
         guard let userId = user?.id else { return }
-        postListener = reference(.Posts).whereField("userId", isEqualTo: userId).addSnapshotListener { (querySnapshot, error) in
+        
+        reference(.Posts).whereField("userId", isEqualTo: userId).order(by: kCREATEDAT).addSnapshotListener { (querySnapshot, error) in
             guard let snapshot = querySnapshot else {
                 print("Error: \(error?.localizedDescription ?? "No error")")
                 return
@@ -112,6 +119,31 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             snapshot.documentChanges.forEach { change in
                 self.handleDocumentChange(change)
             }
+        }
+    }
+    
+    fileprivate func fetchFirstPosts() {
+        guard let user = user else { return }
+        
+        reference(.Posts).document(user.id).collection("userPosts").order(by: kCREATEDAT, descending: true).limit(to: limit).getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            self.posts = snapshot.documents.compactMap{Post(user: user, dictionary: $0.dataWithId())}
+            self.lastDocument = snapshot.documents.last
+            self.collectionView.reloadData()
+        }
+    }
+    
+    fileprivate func fetchNextPosts() {
+        guard let user = user else { return }
+        guard let lastDocument = lastDocument else { return }
+        
+        reference(.Posts).document(user.id).collection("userPosts").order(by: kCREATEDAT, descending: true).start(afterDocument: lastDocument).limit(to: limit).getDocuments { (snapshot, error) in
+            guard let snapshot = snapshot else { return }
+            let posts = snapshot.documents.compactMap{Post(user: user, dictionary: $0.dataWithId())}
+            self.posts += posts
+            self.lastPage = posts.count < self.limit
+            self.lastDocument = snapshot.documents.last
+            self.collectionView.reloadData()
         }
     }
     

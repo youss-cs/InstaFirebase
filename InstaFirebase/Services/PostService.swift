@@ -10,7 +10,8 @@ class PostService {
     static let instance = PostService()
     
     func savePostToFirestore(post: Post, completion: @escaping (_ error: Error?) -> Void) {
-        reference(.Posts).document().setData(post.dictionary) { (error) in
+        guard let userId = AuthService.instance.currentUser()?.id else { return }
+        reference(.Posts).document(userId).collection("userPosts").document().setData(post.dictionary) { (error) in
             completion(error)
         }
     }
@@ -18,7 +19,7 @@ class PostService {
     //MARK: Fetch posts funcs
     
     func fetchPostsWithUser(user: User, completion: @escaping (_ post: Post) -> Void) {
-        reference(.Posts).whereField("userId", isEqualTo: user.id).getDocuments { (snapshot, error) in
+        reference(.Posts).document(user.id).collection("userPosts").getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             snapshot.documents.forEach({ (document) in
                 guard var post = Post(user: user, dictionary: document.dataWithId()) else { return }
@@ -33,7 +34,6 @@ class PostService {
     
     func fetchFollowingPosts(completion: @escaping (_ post: Post) -> Void) {
         guard let userId = AuthService.instance.currentUser()?.id else { return }
-        
         reference(.Following).document(userId).collection("Follower").getDocuments { (snapshot, error) in
             guard let snapshot = snapshot else { return }
             
