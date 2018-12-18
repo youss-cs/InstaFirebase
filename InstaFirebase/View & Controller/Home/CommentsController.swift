@@ -14,35 +14,11 @@ class CommentsController: UITableViewController {
     var post: Post?
     var comments = [Comment]()
     
-    lazy var containerView: UIView = {
-        let containerView = UIView()
-        containerView.backgroundColor = .white
-        containerView.frame = CGRect(x: 0, y: 0, width: 100, height: 50)
-        
-        let sendButton = UIButton(type: .system)
-        sendButton.setTitle("Send", for: .normal)
-        sendButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-        sendButton.setTitleColor(.black, for: .normal)
-        sendButton.addTarget(self, action: #selector(handleSend), for: .touchUpInside)
-        
-        containerView.addSubview(commentTextField)
-        containerView.addSubview(sendButton)
-        
-        commentTextField.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: containerView.bottomAnchor, right: sendButton.leadingAnchor, paddingLeft: 12)
-        sendButton.anchor(top: containerView.topAnchor, bottom: containerView.bottomAnchor, right: containerView.trailingAnchor, paddingRight: 12, width: 50)
-        
-        let lineSeparatorView = UIView()
-        lineSeparatorView.backgroundColor = UIColor.rgb(230, 230, 230)
-        containerView.addSubview(lineSeparatorView)
-        lineSeparatorView.anchor(top: containerView.topAnchor, left: containerView.leadingAnchor, bottom: nil, right: containerView.trailingAnchor, height: 0.5)
-        
-        return containerView
-    }()
-    
-    let commentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter comment"
-        return textField
+    lazy var containerView: CommentInputAccessoryView = {
+        let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: 50)
+        let commentInputAccessoryView = CommentInputAccessoryView(frame: frame)
+        commentInputAccessoryView.delegate = self
+        return commentInputAccessoryView
     }()
     
     override func viewDidLoad() {
@@ -64,14 +40,6 @@ class CommentsController: UITableViewController {
         super.viewWillDisappear(animated)
         
         tabBarController?.tabBar.isHidden = false
-    }
-    
-    override var inputAccessoryView: UIView? {
-        return containerView
-    }
-    
-    override var canBecomeFirstResponder: Bool {
-        return true
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -120,26 +88,34 @@ class CommentsController: UITableViewController {
             }
         }
     }
+}
+
+extension CommentsController: CommentInputAccessoryViewDelegate {
+    override var inputAccessoryView: UIView? {
+        get {
+            return containerView
+        }
+    }
     
-    @objc func handleSend() {
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+    
+    func didSubmit(for comment: String) {
         guard let user = AuthService.instance.currentUser() else { return }
-        guard let post = post, let text = commentTextField.text else { return }
-        guard let postId = post.id else { return }
+        guard let postId = post?.id else { return }
         
-        let dictionary : [String : Any] = [
-            kTEXT : text,
-            kCREATEDAT : Date(),
-            kPOSTID : postId
+        let dictionary: [String : Any] = [
+            kTEXT : comment,
+            kPOSTID : postId,
+            kCREATEDAT : Date()
         ]
         
         guard let comment = Comment(dictionary: dictionary, user: user) else { return }
-        CommentService.instance.saveCommentToFirestore(comment: comment, completion: { (error) in
-            if let error = error {
-                print("Failed to save comment ", error)
+        CommentService.instance.saveCommentToFirestore(comment: comment) { (error) in
+            if error != nil {
                 return
             }
-            
-            print("Comment successfully saved")
-        })
+        }
     }
 }

@@ -31,6 +31,7 @@
 		A13C4BDC21C29C4700F70B66 /* PreviewPhotoContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C4BDB21C29C4700F70B66 /* PreviewPhotoContainerView.swift */; };
 		A13C4BDE21C2A58600F70B66 /* CustomAnimationPresentor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C4BDD21C2A58600F70B66 /* CustomAnimationPresentor.swift */; };
 		A13C4BE021C2A59600F70B66 /* CustomAnimationDismisser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A13C4BDF21C2A59600F70B66 /* CustomAnimationDismisser.swift */; };
+		A1441B6A21C9728E00DC0BFA /* CommentInputAccessoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1441B6921C9728E00DC0BFA /* CommentInputAccessoryView.swift */; };
 		A1463E1E21BAB0B40090543B /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1D21BAB0B40090543B /* LoginController.swift */; };
 		A1463E2021BAB4C60090543B /* UIApplicationExt.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */; };
 		A16FF2A021C3CF1600448985 /* CommentsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16FF29F21C3CF1600448985 /* CommentsController.swift */; };
@@ -81,6 +82,7 @@
 		A13C4BDB21C29C4700F70B66 /* PreviewPhotoContainerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreviewPhotoContainerView.swift; sourceTree = "<group>"; };
 		A13C4BDD21C2A58600F70B66 /* CustomAnimationPresentor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationPresentor.swift; sourceTree = "<group>"; };
 		A13C4BDF21C2A59600F70B66 /* CustomAnimationDismisser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomAnimationDismisser.swift; sourceTree = "<group>"; };
+		A1441B6921C9728E00DC0BFA /* CommentInputAccessoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentInputAccessoryView.swift; sourceTree = "<group>"; };
 		A1463E1D21BAB0B40090543B /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		A1463E1F21BAB4C60090543B /* UIApplicationExt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIApplicationExt.swift; sourceTree = "<group>"; };
 		A16FF29F21C3CF1600448985 /* CommentsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsController.swift; sourceTree = "<group>"; };
@@ -174,6 +176,7 @@
 				A120E75121BE8B0B00D55BD5 /* HomePostCell.swift */,
 				A16FF29F21C3CF1600448985 /* CommentsController.swift */,
 				A16FF2A521C40C4900448985 /* CommentCell.swift */,
+				A1441B6921C9728E00DC0BFA /* CommentInputAccessoryView.swift */,
 			);
 			path = Home;
 			sourceTree = "<group>";
@@ -436,6 +439,7 @@
 				A136EA5521BFF24900741F41 /* UserSearchController.swift in Sources */,
 				A10E766221C173F100598491 /* DateExt.swift in Sources */,
 				A16FF2A021C3CF1600448985 /* CommentsController.swift in Sources */,
+				A1441B6A21C9728E00DC0BFA /* CommentInputAccessoryView.swift in Sources */,
 				A136EA5721BFF84300741F41 /* UserSearchCell.swift in Sources */,
 				A134C3F821B7FA5A0068A077 /* UIColorExt.swift in Sources */,
 				A1B91C3421BC3F4100ACFAF7 /* SharePhotoController.swift in Sources */,
