@@ -17,13 +17,15 @@ class CommentInputAccessoryView: UIView {
     var delegate: CommentInputAccessoryViewDelegate?
     
     func clearCommentTextField() {
-        commentTextField.text = nil
+        commentTextView.text = nil
+        commentTextView.showPlaceholderLabel()
     }
     
-    fileprivate let commentTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Enter Comment"
-        return textField
+    fileprivate let commentTextView: CommentInputTextView = {
+        let tv = CommentInputTextView()
+        tv.isScrollEnabled = false
+        tv.font = UIFont.systemFont(ofSize: 18)
+        return tv
     }()
     
     fileprivate let submitButton: UIButton = {
@@ -38,13 +40,20 @@ class CommentInputAccessoryView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        addSubview(submitButton)
-        submitButton.anchor(top: topAnchor, bottom: bottomAnchor, right: trailingAnchor, paddingRight: 12, width: 50)
+        autoresizingMask = .flexibleHeight
+        backgroundColor = .white
         
-        addSubview(commentTextField)
-        commentTextField.anchor(top: topAnchor, left: leadingAnchor, bottom: bottomAnchor, right: submitButton.leadingAnchor, paddingLeft: 8)
+        addSubview(submitButton)
+        submitButton.anchor(top: topAnchor, right: trailingAnchor, paddingRight: 12, width: 50, height: 50)
+        
+        addSubview(commentTextView)
+        commentTextView.anchor(top: topAnchor, left: leadingAnchor, bottom: safeAreaLayoutGuide.bottomAnchor, right: submitButton.leadingAnchor, paddingTop: 8, paddingLeft: 8, paddingBottom: 8)
         
         setupLineSeparatorView()
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return .zero
     }
     
     fileprivate func setupLineSeparatorView() {
@@ -55,7 +64,7 @@ class CommentInputAccessoryView: UIView {
     }
     
     @objc func handleSubmit() {
-        guard let commentText = commentTextField.text else { return }
+        guard let commentText = commentTextView.text else { return }
         delegate?.didSubmit(for: commentText)
     }
     

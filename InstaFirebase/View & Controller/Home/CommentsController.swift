@@ -55,6 +55,8 @@ class CommentsController: UITableViewController {
     fileprivate func setupTableView() {
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.alwaysBounceVertical = true
+        tableView.keyboardDismissMode = .interactive
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 100
         tableView.tableFooterView = UIView()
@@ -116,6 +118,8 @@ extension CommentsController: CommentInputAccessoryViewDelegate {
             if error != nil {
                 return
             }
+            
+            self.containerView.clearCommentTextField()
         }
     }
 }
