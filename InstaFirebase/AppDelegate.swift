@@ -97,4 +97,22 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
         completionHandler(.alert)
     }
+    
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
+        
+        let userInfo = response.notification.request.content.userInfo
+        
+        let layout = UICollectionViewFlowLayout()
+        let userProfile = UserProfileController(collectionViewLayout: layout)
+        
+        guard let followerId = userInfo["followerId"] as? String else { return }
+        userProfile.userId = followerId
+        
+        guard let mainTabBar = window?.rootViewController as? MainTabBarController else { return }
+        guard let navigation = mainTabBar.viewControllers?.first as? UINavigationController else { return }
+        
+        mainTabBar.selectedIndex = 0
+        mainTabBar.presentedViewController?.dismiss(animated: true)
+        navigation.pushViewController(userProfile, animated: true)
+    }
 }

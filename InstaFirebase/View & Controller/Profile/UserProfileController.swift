@@ -12,6 +12,7 @@ import Firebase
 class UserProfileController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
     var user: User?
+    var userId: String?
     var posts = [Post]()
     var lastDocument: QueryDocumentSnapshot?
     var limit = 4
@@ -31,7 +32,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
         navigationItem.title = user?.username
         
         setupLogOutButton()
-        fetchFirstPosts()
+        
+        if let userId = userId {
+            fetchUser(userId: userId)
+        } else {
+            user = user ?? AuthService.instance.currentUser()
+            fetchFirstPosts()
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
@@ -119,6 +126,13 @@ class UserProfileController: UICollectionViewController, UICollectionViewDelegat
             snapshot.documentChanges.forEach { change in
                 self.handleDocumentChange(change)
             }
+        }
+    }
+    
+    fileprivate func fetchUser(userId: String) {
+        UserService.instance.fetchUser(userId: userId) { (user) in
+            self.user = user
+            self.fetchFirstPosts()
         }
     }
     
