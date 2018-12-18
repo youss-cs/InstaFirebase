@@ -57,7 +57,8 @@ class AuthService {
                 return
             }
             
-            var dict: [String : Any] = [kID : fuser.uid, kEMAIL : fuser.email!, kUSERNAME : username]
+            let token = Messaging.messaging().fcmToken ?? ""
+            var dict: [String : Any] = [kID : fuser.uid, kEMAIL : fuser.email!, kUSERNAME : username, kTOKEN : token]
             
             guard let image = image else {
                 self.saveUser(dictionary: dict)

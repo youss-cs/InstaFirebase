@@ -199,7 +199,6 @@
 		A134C3DF21B7F9D50068A077 /* InstaFirebase */ = {
 			isa = PBXGroup;
 			children = (
-				A1A4EA2F21C7E3CA004654AC /* InstaFirebase.entitlements */,
 				A134C3F621B7FA400068A077 /* Services */,
 				A134C3F521B7FA2F0068A077 /* Utils */,
 				A134C3F421B7FA290068A077 /* View & Controller */,
@@ -211,6 +210,7 @@
 				A134C3E921B7F9D50068A077 /* LaunchScreen.storyboard */,
 				A134C3EC21B7F9D50068A077 /* Info.plist */,
 				A1A4EA3021C7E520004654AC /* GoogleService-Info.plist */,
+				A1A4EA2F21C7E3CA004654AC /* InstaFirebase.entitlements */,
 			);
 			path = InstaFirebase;
 			sourceTree = "<group>";

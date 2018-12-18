@@ -31,6 +31,7 @@ public let kUSERNAME = "username"
 public let kPROFILEIMAGEURLIMAGEURL = "profileImageURL"
 public let kPROFILEIMAGEURL = "avatar"
 public let kCURRENTUSER = "currentUser"
+public let kTOKEN = "fcmToken"
 
 //Post
 public let kIMAGEURL = "imageURL"
